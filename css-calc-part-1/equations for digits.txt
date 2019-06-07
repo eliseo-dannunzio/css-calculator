@@ -1,0 +1,120 @@
+﻿A	(NOT w AND NOT x AND NOT y AND NOT z) OR (NOT w AND NOT x AND y AND NOT z) OR (NOT w AND NOT x AND y AND z) OR (NOT w AND x AND NOT y AND z) OR (NOT w AND x AND y AND NOT z) OR (NOT w AND x AND y AND z) OR (w AND NOT x AND NOT y AND NOT z) OR (w AND NOT x AND NOT y AND z)
+B	(NOT w AND NOT x AND NOT y AND NOT z) OR (NOT w AND NOT x AND NOT y AND z) OR (NOT w AND NOT x AND y AND NOT z) OR (NOT w AND NOT x AND y AND z) OR (NOT w AND x AND NOT y AND NOT z) OR (NOT w AND x AND y AND z) OR (w AND NOT x AND NOT y AND NOT z) OR (w AND NOT x AND NOT y AND z)
+C	(NOT w AND NOT x AND NOT y AND NOT z) OR (NOT w AND NOT x AND NOT y AND z) OR (NOT w AND NOT x AND y AND z) OR (NOT w AND x AND NOT y AND NOT z) OR (NOT w AND x AND NOT y AND z) OR (NOT w AND x AND y AND NOT z) OR (NOT w AND x AND y AND z) OR (w AND NOT x AND NOT y AND NOT z) OR (w AND NOT x AND NOT y AND z)
+D	(NOT w AND NOT x AND NOT y AND NOT z) OR (NOT w AND NOT x AND y AND NOT z) OR (NOT w AND NOT x AND y AND z) OR (NOT w AND x AND NOT y AND z) OR (NOT w AND x AND y AND NOT z) OR (w AND NOT x AND NOT y AND NOT z) OR (w AND NOT x AND NOT y AND z)
+E	(NOT w AND NOT x AND NOT y AND NOT z) OR (NOT w AND NOT x AND y AND NOT z) OR (NOT w AND x AND y AND NOT z) OR (w AND NOT x AND NOT y AND NOT z)
+F	(NOT w AND NOT x AND NOT y AND NOT z) OR (NOT w AND x AND NOT y AND NOT z) OR (NOT w AND x AND NOT y AND z) OR (NOT w AND x AND y AND NOT z) OR (w AND NOT x AND NOT y AND NOT z) OR (w AND NOT x AND NOT y AND z)
+G	(NOT w AND NOT x AND y AND NOT z) OR (NOT w AND NOT x AND y AND z) OR (NOT w AND x AND NOT y AND NOT z) OR (NOT w AND x AND NOT y AND z) OR (NOT w AND x AND y AND NOT z) OR (w AND NOT x AND NOT y AND NOT z) OR (w AND NOT x AND NOT y AND z)
+
+Segment A
+(NOT w AND NOT x AND NOT y AND NOT z) OR (NOT w AND NOT x AND y AND NOT z) OR 
+(NOT w AND NOT x AND y AND z) OR (NOT w AND x AND NOT y AND z) OR 
+(NOT w AND x AND y AND NOT z) OR (NOT w AND x AND y AND z) OR 
+(w AND NOT x AND NOT y AND NOT z) OR (w AND NOT x AND NOT y AND z)
+= ((NOT w) AND (NOT x) AND (NOT z)) OR
+((NOT w) AND (NOT (x AND y)) AND (NOT ((NOT x) AND (NOT y))) AND z) OR
+((NOT w) AND x AND y) OR 
+(w AND (NOT x) AND (NOT y))
+= (NOT w) AND (NOT (x AND y)) AND (NOT (x AND (NOT z))) AND (NOT ((NOT x) AND (NOT y) AND z)) OR
+(NOT (w AND y)) AND (NOT ((NOT w) AND (NOT x))) AND (NOT (x AND (NOT y)))
+= (NOT (w AND x)) AND (NOT (w AND y)) AND (NOT ((NOT w) AND (NOT x) AND (NOT y) AND z)) AND (NOT (x AND (NOT y) AND (NOT z)))
+= (1-wx)(1-wy)(1-(1-w)(1-x)(1-y)z)(1-(x(1-y)(1-z)))
+= 2wxyz-2wxz-wyz-wy+wz-2xyz+xy+2xz-x+yz-z+1 (correct)
+
+Segment B
+(NOT w AND NOT x AND NOT y AND NOT z) OR (NOT w AND NOT x AND NOT y AND z) OR 
+(NOT w AND NOT x AND y AND NOT z) OR (NOT w AND NOT x AND y AND z) OR 
+(NOT w AND x AND NOT y AND NOT z) OR (NOT w AND x AND y AND z) OR 
+(w AND NOT x AND NOT y AND NOT z) OR (w AND NOT x AND NOT y AND z)
+
+= ((NOT w) AND (NOT x) AND (NOT y)) OR
+((NOT w) AND (NOT x) AND y) OR
+((NOT w) AND x AND (NOT (y AND (NOT z))) AND (NOT ((NOT y) AND z))) OR
+(w AND (NOT x) AND (NOT y))
+
+= (NOT (w AND x)) AND (NOT (w AND y)) AND (NOT (x AND y AND (NOT z))) AND (NOT (x AND (NOT y) AND z))
+= (1-(wx))(1-(wy))(1-(xy(1-z)))(1-(x(1-y)z))
+= 2wxy+wxz-2wxyz-wx-wy+2xyz-xy-xz+1 (correct)
+
+Segment C:
+(NOT w AND NOT x AND NOT y AND NOT z) OR (NOT w AND NOT x AND NOT y AND z) OR 
+(NOT w AND NOT x AND y AND z) OR (NOT w AND x AND NOT y AND NOT z) OR 
+(NOT w AND x AND NOT y AND z) OR (NOT w AND x AND y AND NOT z) OR 
+(NOT w AND x AND y AND z) OR (w AND NOT x AND NOT y AND NOT z) OR (w AND NOT x AND NOT y AND z)
+
+= ((NOT w) AND (NOT x) AND (NOT y)) OR
+(NOT w) AND (NOT (x AND z)) AND (NOT ((NOT x) AND (NOT y))) AND (NOT (y AND (NOT z))) OR
+(NOT w) AND x AND (NOT (y AND z)) AND (NOT ((NOT y) AND (NOT z))) OR
+(NOT (w AND y)) AND (NOT ((NOT w) AND (NOT x))) AND (NOT (x AND (NOT y))) AND (NOT (x AND (NOT z)))
+
+= (1-wx)(1-wy)(1-(1-x)y(1-z))
+= 1+wxyz-wx-wyz-xyz+xy+yz-y (correct)
+
+Segment D:
+(NOT w AND NOT x AND NOT y AND NOT z) OR (NOT w AND NOT x AND y AND NOT z) OR 
+(NOT w AND NOT x AND y AND z) OR (NOT w AND x AND NOT y AND z) OR 
+(NOT w AND x AND y AND NOT z) OR (w AND NOT x AND NOT y AND NOT z) OR (w AND NOT x AND NOT y AND z)
+
+= ((NOT w) AND (NOT x) AND (NOT z)) OR
+((NOT w) AND (NOT (x AND y)) AND (NOT ((NOT x) AND (NOT y))) AND z) OR
+((NOT (w AND x)) AND (NOT ((NOT w) AND (NOT y))) AND (NOT ((NOT w) AND z)) AND (NOT ((NOT x) AND y)))
+
+= (NOT w) AND (NOT (x AND y)) AND (NOT (x AND (NOT z))) AND (NOT ((NOT x) AND (NOT y) AND z)) OR
+((NOT (w AND x)) AND (NOT ((NOT w) AND (NOT y))) AND (NOT ((NOT w) AND z)) AND (NOT ((NOT x) AND y)))
+
+= (NOT (w AND x)) AND (NOT (w AND y)) AND (NOT ((NOT w) AND (NOT x) AND (NOT y) AND z)) AND (NOT (x AND y AND z)) AND (NOT (x AND (NOT y) AND (NOT z)))
+
+= (1-(wx))(1-(wy))(1-((1-w)(1-x)(1-y)z))(1-(xyz))(1-(x(1-y)(1-z)))
+
+= wxyz-wxyz-2wxyz+wxyz+wxyz+wxyz+wxyz-2wxyz-wxyz+wxyz
+-wxyz+wxyz+2wxyz-wxyz-wxyz-wxyz-wxyz+2wxyz+wxyz-wxyz
+-wxyz+wxyz+2wxyz+wxyz-2wxyz-xyz-wxyz-2wxyz+wxyz+2xyz
++wxyz-xyz+wxyz-wxyz-4wxyz+2wxyz+2wxyz+xyz+wxz+4wxyz
+-4wxyz-2xyz-wxz-wxyz-3wxyz+4wxyz+xyz+wxyz-2wxyz-wxz
+-2wxyz+2wxyz+2wxyz+wxz+wxyz+wxyz-3wxyz+wxyz-wxyz-2wxyz
++wxyz+xyz+wxyz+wxyz-2xyz-wxyz+xyz+wxy-wxyz+wxyz+2wxyz
++2wxyz-4wxyz-xyz-wxz-3wxyz-3wxyz+3wxyz+5xyz+wxyz+3wxyz
+-5xyz+xz+wx-wxy-wxy-wxyz+2wxyz+2wxz+3wxyz-2wxyz-3wxyz
+-2xyz-2wxz-2wxyz-wxyz+4wxyz+3xyz-xz-wxy-2wxyz+2wxyz
++3wxyz-wxyz-2xyz+wxz-wxyz-2wxyz+3xyz-xz-wx+wxy+wxy
++xy+wxyz-wxyz-wxz-wxyz-2wxyz+4wxyz+xyz-wxz+wxyz
++2wxyz-wxyz-5xyz+3xz-x-wy+wyz-wyz+wz-wyz+yz-z+1
+
+= 3wxyz-2wxz-wyz-wy+wz-3xyz+xy+2xz-x+yz-z+1 (correct)
+
+Segment E:
+
+(NOT w AND NOT x AND NOT y AND NOT z) OR (NOT w AND NOT x AND y AND NOT z) OR 
+(NOT w AND x AND y AND NOT z) OR (w AND NOT x AND NOT y AND NOT z)
+
+= (NOT (w AND y)) AND (NOT (x AND (NOT y))) AND (NOT z)
+= (1-(wy))(1-(x(1-y)))(1-z)
+= wyz-wy-xyz+xy+xz-x-z+1 (correct)
+
+Segment F:
+(NOT w AND NOT x AND NOT y AND NOT z) OR (NOT w AND x AND NOT y AND NOT z) OR 
+(NOT w AND x AND NOT y AND z) OR (NOT w AND x AND y AND NOT z) OR 
+(w AND NOT x AND NOT y AND NOT z) OR (w AND NOT x AND NOT y AND z)
+
+= ((NOT w) AND (NOT y) AND (NOT z)) OR
+(NOT w) AND x AND (NOT (y AND z)) AND (NOT ((NOT y) AND (NOT z))) OR
+(w AND (NOT x) AND (NOT y))
+
+= (NOT (w AND x)) AND (NOT ((NOT w) AND (NOT x) AND z)) AND (NOT ((NOT x) AND y)) AND (NOT (y AND z))
+
+= (1-(wx))(1-((1-w)(1-x)z))(1-((1-x)y))(1-(yz))
+= 1-wx-y+xy-z+wz+xz-wxz+yz-wyz-2xyz+2wxyz (correct)
+
+Segment G:
+
+(NOT w AND NOT x AND y AND NOT z) OR (NOT w AND NOT x AND y AND z) OR 
+(NOT w AND x AND NOT y AND NOT z) OR (NOT w AND x AND NOT y AND z) OR 
+(NOT w AND x AND y AND NOT z) OR (w AND NOT x AND NOT y AND NOT z) OR (w AND NOT x AND NOT y AND z)
+
+= ((NOT w) AND (NOT x) AND y) OR
+((NOT w) AND x AND (NOT y)) OR
+((NOT (w AND x)) AND (NOT ((NOT w) AND (NOT y))) AND (NOT ((NOT w) AND z)) AND (NOT ((NOT x) AND y)))
+
+= (NOT (w AND x)) AND (NOT (w AND y)) AND (NOT ((NOT w) AND (NOT x) AND (NOT y))) AND (NOT (x AND y AND z))
+= (1-(wx))(1-(wy))(1-((1-w)(1-x)(1-y)))(1-(xyz))
+= 2wxy-2wx+wxyz-2wy+w-xyz-xy+x+y (correct)

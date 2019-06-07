@@ -1,0 +1,350 @@
+:root {
+
+    /* Bits */
+    --input_0: 0;
+    /* z */
+    --input_1: 0;
+    /* y */
+    --input_2: 0;
+    /* x */
+    --input_3: 0;
+    /* w */
+
+    /* RGB */
+    --lcd_r: 42;
+    --lcd_g: 45;
+    --lcd_b: 34;
+
+    /* Opacity */
+    --lcd_A0: 0;
+    --lcd_B0: 0;
+    --lcd_C0: 0;
+    --lcd_D0: 0;
+    --lcd_E0: 0;
+    --lcd_F0: 0;
+    --lcd_G0: 0;
+
+    --lcd_o_base: 0.90;
+    --lcd_o_offset: 0.10;
+}
+
+#buttons {
+    width: 160px;
+    height: 160px;
+    display: block;
+    margin-right: 10px;
+	float: left;
+}
+
+#buttons .digit-button {
+    color: white;
+    background-color: blue;
+    padding: 10px 15px;
+    font-weight: 700;
+    display: block;
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+#led-screen {
+    background-color: #b7ac90;
+    width: 200px;
+    height: 200px;
+    display: block;
+	float: left;
+}
+
+#led-screen input[type="radio"] {
+	display: none;
+}
+
+.digit {
+    width: 75px;
+    height: 150px;
+    float: right;
+    margin-right: 50px;
+    margin-top: 10px;
+    transform: skew(-5deg);
+}
+
+.segment {
+    width: 60px;
+    height: 20px;
+}
+.segment:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    position: relative;
+    top: 0px;
+    left: -10px;
+}
+.segment:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    position: relative;
+    top: -20px;
+    left: 60px;
+}
+
+/* Segment A */
+/* 2wxyz-2wxz-wyz-wy+wz-2xyz+xy+2xz-x+yz-z+1 */
+.segment-a {
+    position: relative;
+    left: 0;
+    top: 0;
+    --lcd_A0: calc(((2 * var(--input_3) * var(--input_2) * var(--input_1) * var(--input_0)) - 
+        (2 * var(--input_3) * var(--input_2) * var(--input_0)) - 
+        (var(--input_3) * var(--input_1) * var(--input_0)) - 
+        (var(--input_3) * var(--input_1)) + 
+        (var(--input_3) * var(--input_0)) - 
+        (2 * var(--input_2) * var(--input_1) * var(--input_0)) + 
+        (var(--input_2) * var(--input_1)) + 
+        (2 * var(--input_2) * var(--input_0)) - 
+        var(--input_2) + 
+        (var(--input_1) * var(--input_0)) - 
+        var(--input_0) + 1) 
+    * var(--lcd_o_base) 
+    + var(--lcd_o_offset));
+    background-color: rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_A0));
+
+}
+.segment-a:before {
+    border-right: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_A0));
+}
+.segment-a:after {
+    border-left: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_A0));
+}
+
+/* Segment B*/
+/* 2wxy+wxz-2wxyz-wx-wy+2xyz-xy-xz+1 */
+.segment-b {
+	position: relative;
+	transform: rotate(90deg);
+	left: 41px;
+    top: 21px;
+	--lcd_B0: calc(((2 * var(--input_3) * var(--input_2) * var(--input_1)) + 
+        (var(--input_3) * var(--input_2) * var(--input_0)) - 
+        (2 * var(--input_3) * var(--input_2) * var(--input_1) * var(--input_0)) - 
+        (var(--input_3) * var(--input_2)) - 
+        (var(--input_3) * var(--input_1)) + 
+        (2 * var(--input_2) * var(--input_1) * var(--input_0)) - 
+        (var(--input_2) * var(--input_1)) - 
+        (var(--input_2) * var(--input_0)) + 1) 
+    * var(--lcd_o_base) 
+    + var(--lcd_o_offset));
+    background-color: rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_B0));
+}
+.segment-b:before {
+    border-right: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_B0));
+}
+.segment-b:after {
+    border-left: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_B0));
+}
+
+/* Segment C*/
+/* wxyz-wx-wyz-xyz+xy+yz-y+1 */
+.segment-c {
+	position: relative;
+	transform: rotate(90deg);
+	left: 41px;
+    top: 83px;
+	--lcd_C0: calc(((var(--input_3) * var(--input_2) * var(--input_1) * var(--input_0)) - 
+        (var(--input_3) * var(--input_2)) - 
+        (var(--input_3) * var(--input_1) * var(--input_0)) - 
+        (var(--input_2) * var(--input_1) * var(--input_0)) + 
+        (var(--input_2) * var(--input_1)) + 
+        (var(--input_1) * var(--input_0)) - 
+        var(--input_1) + 1) 
+    * var(--lcd_o_base) 
+    + var(--lcd_o_offset));
+    background-color: rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_C0));
+}
+.segment-c:before {
+    border-right: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_C0));
+}
+.segment-c:after {
+    border-left: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_C0));
+}
+
+/* Segment D */
+/* 3wxyz-2wxz-wyz-wy+wz-3xyz+xy+2xz-x+yz-z+1 */
+.segment-d {
+	position: relative;
+	left: 0;
+	top: 104px;
+	--lcd_D0: calc(((3 * var(--input_3) * var(--input_2) * var(--input_1) * var(--input_0)) - 
+        (2 * var(--input_3) * var(--input_2) * var(--input_0)) - 
+        (var(--input_3) * var(--input_1) * var(--input_0)) - 
+        (var(--input_3) * var(--input_1)) + 
+        (var(--input_3) * var(--input_0)) - 
+        (3 * var(--input_2) * var(--input_1) * var(--input_0)) + 
+        (var(--input_2) * var(--input_1)) + 
+        (2 * var(--input_2) * var(--input_0)) - 
+        var(--input_2) +
+        (var(--input_1) * var(--input_0)) - 
+		var(--input_0) + 1) 
+    * var(--lcd_o_base) 
+    + var(--lcd_o_offset));
+    background-color: rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_D0));}
+.segment-d:before {
+    border-right: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_D0));
+}
+.segment-d:after {
+    border-left: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_D0));
+}
+
+/* Segment E */
+/* wyz-wy-xyz+xy+xz-x-z+1 */
+.segment-e {
+	position: relative;
+	transform: rotate(90deg);
+	left: -41px;
+    top: 43px;
+	--lcd_E0: calc(((var(--input_3) * var(--input_1) * var(--input_0)) - 
+        (var(--input_3) * var(--input_1)) - 
+        (var(--input_2) * var(--input_1) * var(--input_0)) + 
+        (var(--input_2) * var(--input_1)) + 
+        (var(--input_2) * var(--input_0)) - 
+        var(--input_2) - var(--input_0) + 1) 
+    * var(--lcd_o_base) 
+    + var(--lcd_o_offset));
+    background-color: rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_E0));
+}
+.segment-e:before {
+    border-right: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_E0));
+}
+.segment-e:after {
+    border-left: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_E0));
+}
+
+/* Segment F */
+/* 1-wx-y+xy-z+wz+xz-wxz+yz-wyz-2xyz+2wxyz */
+.segment-f {
+	position: relative;
+	transform: rotate(90deg);
+	left: -41px;
+    top: -59px;
+	--lcd_F0: calc((1 -
+		(var(--input_3) * var(--input_2)) - 
+        var(--input_1) + 
+        (var(--input_2) * var(--input_1)) - 
+        var(--input_0) + 
+        (var(--input_3) * var(--input_0)) + 
+        (var(--input_2) * var(--input_0)) - 
+        (var(--input_3) * var(--input_2) * var(--input_0)) + 
+        (var(--input_1) * var(--input_0)) - 
+        (var(--input_3) * var(--input_1) * var(--input_0)) - 
+        (2 * var(--input_2) * var(--input_1) * var(--input_0)) + 
+		(2 * var(--input_3) * var(--input_2) * var(--input_1) * var(--input_0))) 
+    * var(--lcd_o_base) 
+    + var(--lcd_o_offset));
+    background-color: rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_F0));}
+.segment-f:before {
+    border-right: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_F0));
+}
+.segment-f:after {
+    border-left: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_F0));
+}
+
+/* Segment G */
+/* 2wxy-2wx+wxyz-2wy+w-xyz-xy+x+y */
+.segment-g {
+	position: relative;
+	left: 0;
+	top: -38px;
+	--lcd_G0: calc(((2 * var(--input_3) * var(--input_2) * var(--input_1)) - 
+        (2 * var(--input_3) * var(--input_2)) - 
+        (var(--input_3) * var(--input_2) * var(--input_1) * var(--input_0)) -
+        (2 * var(--input_3) * var(--input_1)) + 
+        (var(--input_3)) - 
+        (var(--input_2) * var(--input_1) * var(--input_0)) - 
+        (var(--input_2) * var(--input_1)) + 
+        var(--input_2) + var(--input_1)) 
+    * var(--lcd_o_base) 
+    + var(--lcd_o_offset));
+    background-color: rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_G0));}
+.segment-g:before {
+    border-right: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_G0));
+}
+.segment-g:after {
+    border-left: 10px solid rgba(var(--lcd_r), var(--lcd_g), var(--lcd_b), var(--lcd_G0));
+}
+
+#digit-0:checked~#lcd-0 {
+    --input_0: 0;
+    --input_1: 0;
+    --input_2: 0;
+    --input_3: 0;
+}
+
+#digit-1:checked~#lcd-0 {
+    --input_0: 1;
+    --input_1: 0;
+    --input_2: 0;
+    --input_3: 0;
+}
+
+#digit-2:checked~#lcd-0 {
+    --input_0: 0;
+    --input_1: 1;
+    --input_2: 0;
+    --input_3: 0;
+}
+
+#digit-3:checked~#lcd-0 {
+    --input_0: 1;
+    --input_1: 1;
+    --input_2: 0;
+    --input_3: 0;
+}
+
+#digit-4:checked~#lcd-0 {
+    --input_0: 0;
+    --input_1: 0;
+    --input_2: 1;
+    --input_3: 0;
+}
+
+#digit-5:checked~#lcd-0 {
+    --input_0: 1;
+    --input_1: 0;
+    --input_2: 1;
+    --input_3: 0;
+}
+
+#digit-6:checked~#lcd-0 {
+    --input_0: 0;
+    --input_1: 1;
+    --input_2: 1;
+    --input_3: 0;
+}
+
+#digit-7:checked~#lcd-0 {
+    --input_0: 1;
+    --input_1: 1;
+    --input_2: 1;
+    --input_3: 0;
+}
+
+#digit-8:checked~#lcd-0 {
+    --input_0: 0;
+    --input_1: 0;
+    --input_2: 0;
+    --input_3: 1;
+}
+
+#digit-9:checked~#lcd-0 {
+    --input_0: 1;
+    --input_1: 0;
+    --input_2: 0;
+    --input_3: 1;
+}
