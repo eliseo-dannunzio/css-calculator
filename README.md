@@ -18,4 +18,9 @@ CSS Calculator
 
 **So, how would you do most of this?**
 
-*I'm working this out as I go along. There are certian aspects of the way CSS variables work that allow you to take advantage of conditionals based on Boolean logic, which in turn can be reduced down to mathematical equations that involve multiplication, subtraction and addition; stuff that the **CSS calc()** is quite capable of doing with css variables. I will be explaining the first part of my repo very soon. Stay tuned.*
+*CSS3 now makes use of two functions, **calc()** and **var()** which allow **CSS variables** (also called CSS Custom properties) to be implemented. This is similar to the variables that are available to SASS and LESS CSS pre-compilers. The only difference is that CSS variables can be manipulated in real time.*
+
+*With that in mind, you can build a series of registers to hold binary place-holders (1's and 0's) and then using a series of mathematical equations implemented by either variable assignment using **var()** or through calculation using a combination of **var()** and **calc()**, mimic specific functions like performing logic gate functions like **AND** and **OR**, or even perform carry-over or carry-back functions to perform addition and subtraction.*
+
+
+
