@@ -176,3 +176,5 @@ resulted in 4wxyz-wxy-3wxz+wx-2wyz+wz-2xyz+xy+2xz-x+yz-z+1; which, when I tested
 plugging in values of 0 or 1 for the sixteen different possibilities from 0000 to 1111 yielded the exact results I had determined...
 
 Now I just had to repeat this process with the other six segments... [Sigh]
+
+NOTE: The concept illustrated above was with respect to an earlier instance of determining the equations for displaying all 16 possible combinations for a hexadecimal display, and so the equation used is with respect to the values from 0-F... I have determined the actual equations for decimal to LCD in Digits.xlsx file and the "equations for digits.txt" text file located in this folder. Enjoy!
