@@ -19,14 +19,14 @@ mathematical equations using the following equivalents (referencing: https://en.
 
 A **AND** B = A * B
 
-A **OR** B = A + B - (A * B)\
+A **OR** B = A + B - (A * B)
 
 **NOT** A = 1 - A
 
 where A and B can only equal 0 or 1... This process is simple enough when dealing with two inputs... but what does one do with four inputs
 like W, X, Y and Z, I had to ask myself?
 
-For example, my Boolean equation for Segment A (top of the LED display) is:
+For example, my Boolean equation for Segment A (top of the LED display) for a hexadecimal to LCD (i.e. 0-9 and then A to F, to LCD) is:
 
 (W **AND NOT**(X) **AND NOT**(Y)) **OR** (W **AND NOT**(Z)) **OR** (**NOT**(W) **AND** X **AND** Z) OR (**NOT**(W) **AND** Y) **OR** (X **AND** Y) **OR** (**NOT**(X) **AND NOT**(Z))
 
