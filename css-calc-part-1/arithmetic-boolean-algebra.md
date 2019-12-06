@@ -6,6 +6,8 @@ This basically took the binary equivalent of the decimal value entered by a butt
 
 Creating the LCD segments were not the issue here, but implementing the logic behind what turned on and what turned off when I clicked a 0 button or a 3 button was.
 
+**Note: I had initially started playing with the idea of working out binary coded hexadecimal to LCD initially when I was designing for proof of concept, so the equation for Segment A differs from the final result used in the actual code. The code below is for the Segment A equation for hexadecimal to LCD.**
+
 Basically what I would be dealing with was a half-byte register with four nibbles **W, X, Y and Z**; for the seven-segment LED display. 
 If I was trying to replicate this in CSS, all of the nibbles would naturally  receive a 0 or 1 pulse; and then the CSS would process 
 each of the pulses with the Boolean equations I determined, which would then result in each segment being turned on (1) or off (0) 
@@ -120,7 +122,7 @@ I knew this would take some time to simplify...
 
 Luckily, WolframAlpha has an option to export certain answers into plain text... I took advantage of this and copied and pasted it into a text editor...
 
-x^4y^4z^4w^4-2x^3y^4z^4w^4+x^2y^4z^4w^4-3x^4y^3z^4w^4+6x^3y^3z^4w^4
+**x^4y^4z^4w^4-2x^3y^4z^4w^4+x^2y^4z^4w^4-3x^4y^3z^4w^4+6x^3y^3z^4w^4
 -3x^2y^3z^4w^4+3x^4y^2z^4w^4-6x^3y^2z^4w^4+3x^2y^2z^4w^4-x^4yz^4w^4
 +2x^3yz^4w^4-x^2yz^4w^4-x^4y^4z^3w^4+2x^3y^4z^3w^4-x^2y^4z^3w^4
 +3x^4y^3z^3w^4-6x^3y^3z^3w^4+3x^2y^3z^3w^4-3x^4y^2z^3w^4+6x^3y^2z^3w^4
@@ -145,7 +147,7 @@ x^4y^4z^4w^4-2x^3y^4z^4w^4+x^2y^4z^4w^4-3x^4y^3z^4w^4+6x^3y^3z^4w^4
 -2x^3y^3z^2w+3x^2y^3z^2w-xy^3z^2w-5x^2z^2w+5x^3y^2z^2w-13x^2y^2z^2w
 +8xy^2z^2w-y^2z^2w+3xz^2w-4x^3yz^2w+15x^2yz^2w-10xyz^2w+yz^2w+xw-xyw
 +3x^2zw+4x^2y^2zw-3xy^2zw-5xzw-7x^2yzw+9xyzw-2yzw+zw+x^2z^2+x^2y^2z^2
--xy^2z^2-xz^2-2x^2yz^2+2xyz^2-x+xy-x^2z-x^2y^2z+xy^2z+3xz+2x^2yz-4xyz+yz-z+1
+-xy^2z^2-xz^2-2x^2yz^2+2xyz^2-x+xy-x^2z-x^2y^2z+xy^2z+3xz+2x^2yz-4xyz+yz-z+1**
 
 Simplifying this on the fly would be a pain... and it then occurred to me there was a way to reduce this considerably, 
 especially considering I was currently dealing with a quartic polynomial, where the only possible values for w, x, y and z were either 0 or 1...
@@ -156,7 +158,7 @@ That's right, because w, x, y and z were essentially pulses, either with a value
 w^4 or x^3 or y^2 and so on were going to boil down to w, x, y or z; simply because 1^n = 1 and 0^n = 0 for n>0; so put simply, 
 a couple of global replaces later, this "reduced" my equation to the following:
 
-xyzw-2xyzw+xyzw-3xyzw+6xyzw-3xyzw+3xyzw-6xyzw+3xyzw-xyzw+2xyzw-xyzw-xyzw+2xyzw
+**xyzw-2xyzw+xyzw-3xyzw+6xyzw-3xyzw+3xyzw-6xyzw+3xyzw-xyzw+2xyzw-xyzw-xyzw+2xyzw
 -xyzw+3xyzw-6xyzw+3xyzw-3xyzw+6xyzw-3xyzw+xyzw-2xyzw+xyzw-2xyzw+4xyzw-2xyzw
 +6xyzw-12xyzw+6xyzw-6xyzw+12xyzw-6xyzw+2xyzw-4xyzw+2xyzw+2xyzw-4xyzw+2xyzw-xzw
 -6xyzw+16xyzw-12xyzw+2xyzw+xzw+6xyzw-21xyzw+19xyzw-4xyzw-2xyzw+10xyzw-10xyzw
@@ -167,14 +169,15 @@ xyzw-2xyzw+xyzw-3xyzw+6xyzw-3xyzw+3xyzw-6xyzw+3xyzw-xyzw+2xyzw-xyzw-xyzw+2xyzw
 +10xyzw-yzw-2xzw-3xyzw+2xyzw+xzw+5xyzw-3xyzw-xzw+2xyzw-3xyzw+xyzw+xzw-5xyzw
 +7xyzw-2xyzw+4xyzw-5xyzw+xyzw+xzw-2xyzw+3xyzw-xyzw-5xzw+5xyzw-13xyzw+8xyzw
 -yzw+3xzw-4xyzw+15xyzw-10xyzw+yzw+xw-xyw+3xzw+4xyzw-3xyzw-5xzw-7xyzw+9xyzw
--2yzw+zw+xz+xyz-xyz-xz-2xyz+2xyz-x+xy-xz-xyz+xyz+3xz+2xyz-4xyz+yz-z+1
+-2yzw+zw+xz+xyz-xyz-xz-2xyz+2xyz-x+xy-xz-xyz+xyz+3xz+2xyz-4xyz+yz-z+1**
 
 Lastly, after re-writing the terms back into alphabetic order, I sliced up the equation into smaller pieces that could be 
 inputted into WolframAlpha to get simplified snippets that were basically re-glued back together... Eventually my arithmetic 
 equivalent of (w AND NOT(x) AND NOT(y)) OR (w AND NOT(z)) OR (NOT(w) AND x AND z) OR (NOT(w) AND y) OR (x AND y) OR (NOT(x) AND NOT(z)) 
-resulted in 4wxyz-wxy-3wxz+wx-2wyz+wz-2xyz+xy+2xz-x+yz-z+1; which, when I tested it against my original truth table for Segment A, 
-plugging in values of 0 or 1 for the sixteen different possibilities from 0000 to 1111 yielded the exact results I had determined...
+resulted in an algebraic equivalent of 4wxyz-wxy-3wxz+wx-2wyz+wz-2xyz+xy+2xz-x+yz-z+1; which, when I tested it against my original 
+truth table for Segment A, plugging in values of 0 or 1 for the sixteen different possibilities from 0000 to 1111 yielded the exact
+results I had determined...
 
 Now I just had to repeat this process with the other six segments... [Sigh]
 
-NOTE: The concept illustrated above was with respect to an earlier instance of determining the equations for displaying all 16 possible combinations for a hexadecimal display, and so the equation used is with respect to the values from 0-F... I have determined the actual equations for decimal to LCD in Digits.xlsx file and the "equations for digits.txt" text file located in this folder. Enjoy!
+**NOTE 2: The concept illustrated above was with respect to an earlier instance of determining the equations for displaying all 16 possible combinations for a hexadecimal display, and so the equation used is with respect to the values from 0-F... I have determined the actual equations for decimal to LCD in Digits.xlsx file and the "equations for digits.txt" text file located in this folder. Enjoy!**
