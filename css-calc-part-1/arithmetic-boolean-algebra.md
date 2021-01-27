@@ -104,6 +104,7 @@ Here's the text equivalent:
 Simplifying this on the fly would be a pain... and it then occurred to me there was a way to reduce this considerably, as in each equation generated like the above was simply a polynomial, where the only possible values for w, x, y and z were either 0 or 1...
 
 REMOVE ALL THE INDICES!
+=
 
 That's right, because w, x, y and z were essentially pulses, either with a value of 0 or 1, indicies in the format of
 w^4 or x^3 or y^2 and so on were going to boil down to w, x, y or z; simply because 1^n = 1 and 0^n = 0 for n>0; so put simply, 
