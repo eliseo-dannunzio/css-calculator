@@ -60,7 +60,7 @@ Now that I had my Boolean equation re-written with respect to AND and NOT gates,
 
 Now, using the arithmetic rules I mentioned in my initial post, wrote the arithmetic equivalent out:
 
-**(1-(w*x*(1-y)*z))*(1-(w*(1-x)*y*z))*(1-((1-w)*x*(1-y)*(1-z)))*(1-((1-w)*(1-x)*(1-y)*z))**
+** (1-(w*x*(1-y)*z))*(1-(w*(1-x)*y*z))*(1-((1-w)*x*(1-y)*(1-z)))*(1-((1-w)*(1-x)*(1-y)*z)) **
 
 Next, I stuck this back into WolframAlpha, and waited...
 
